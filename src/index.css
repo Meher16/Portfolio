@@ -1,0 +1,185 @@
+@import "tailwindcss";
+
+@theme {
+  --color-void: #0a0d10;
+  --color-panel: #12161b;
+  --color-line: #232a32;
+  --color-paper: #eceff2;
+  --color-fog: #8b96a1;
+  --color-phosphor: #7cffb2;
+  --color-phosphor-dim: #3f8f6c;
+  --color-signal: #5b8cff;
+  --color-signal-dim: #3a5aa8;
+
+  --font-display: "Space Grotesk", "Inter", sans-serif;
+  --font-body: "Inter", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, monospace;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-void);
+    color: var(--color-paper);
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection {
+    background: var(--color-phosphor);
+    color: var(--color-void);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-phosphor);
+    outline-offset: 3px;
+  }
+}
+
+@layer utilities {
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--color-phosphor);
+  }
+
+  .trace-dot {
+    box-shadow: 0 0 0 4px rgba(124, 255, 178, 0.12);
+  }
+
+  /* ---------------------------------------------------------------
+     Interaction system: every clickable element in the site should
+     lighten on hover and shift to the accent color once
+     active/clicked, so navigation always gives visible feedback.
+  ------------------------------------------------------------------ */
+
+  /* Top-nav / footer-nav links: dim by default, brighten on hover,
+     switch to phosphor + underline while their section is active. */
+  .nav-link {
+    color: var(--color-fog);
+    transition: color 0.2s ease;
+  }
+  .nav-link:hover {
+    color: var(--color-paper);
+  }
+  .nav-link[aria-current="true"] {
+    color: var(--color-phosphor);
+  }
+
+  /* Inline text links (offer letter, footer socials, etc.) */
+  .link-underline {
+    color: var(--color-phosphor);
+    text-decoration-color: transparent;
+    transition: color 0.2s ease, text-decoration-color 0.2s ease;
+  }
+  .link-underline:hover {
+    color: var(--color-paper);
+    text-decoration-color: currentColor;
+  }
+  .link-underline:active,
+  .link-underline:visited:active {
+    color: var(--color-signal);
+  }
+
+  /* Solid buttons (primary CTA) */
+  .btn-solid {
+    background: var(--color-phosphor);
+    color: var(--color-void);
+    transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
+  }
+  .btn-solid:hover {
+    background: #a3ffc9;
+    box-shadow: 0 0 0 4px rgba(124, 255, 178, 0.15);
+    transform: translateY(-1px);
+  }
+  .btn-solid:active {
+    background: var(--color-signal);
+    color: var(--color-paper);
+    transform: translateY(0);
+    box-shadow: none;
+  }
+
+  /* Outlined buttons (secondary CTA) */
+  .btn-outline {
+    border: 1px solid var(--color-line);
+    color: var(--color-paper);
+    background: transparent;
+    transition: border-color 0.2s ease, color 0.2s ease, background-color 0.2s ease;
+  }
+  .btn-outline:hover {
+    border-color: var(--color-phosphor);
+    color: var(--color-phosphor);
+  }
+  .btn-outline:active {
+    background: var(--color-phosphor);
+    border-color: var(--color-phosphor);
+    color: var(--color-void);
+  }
+
+  /* Icon buttons (socials) */
+  .icon-btn {
+    border: 1px solid var(--color-line);
+    color: var(--color-fog);
+    transition: border-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+  }
+  .icon-btn:hover {
+    border-color: var(--color-phosphor);
+    color: var(--color-phosphor);
+    transform: translateY(-2px);
+  }
+  .icon-btn:active {
+    color: var(--color-signal);
+    border-color: var(--color-signal);
+    transform: translateY(0);
+  }
+
+  /* Generic hoverable surfaces: project/service/education cards */
+  .surface-card {
+    transition: border-color 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .surface-card:hover {
+    border-color: var(--color-phosphor);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 30px -18px rgba(124, 255, 178, 0.35);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@keyframes pulse-node {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.15); }
+}
+.animate-pulse-node {
+  animation: pulse-node 2.4s ease-in-out infinite;
+}
+
+@keyframes drift {
+  0% { transform: translate(0, 0); }
+  50% { transform: translate(12px, -14px); }
+  100% { transform: translate(0, 0); }
+}
+.animate-drift {
+  animation: drift 9s ease-in-out infinite;
+}
+
+@keyframes caret-blink {
+  0%, 45% { opacity: 1; }
+  50%, 95% { opacity: 0; }
+  100% { opacity: 1; }
+}
+.animate-caret {
+  animation: caret-blink 1s step-end infinite;
+}
