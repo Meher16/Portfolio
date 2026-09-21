@@ -142,7 +142,7 @@ export const projects = [
   description:
     "A banking management application for managing customer accounts, transactions, deposits, withdrawals, and account records with core banking operations.",
   tags: ["Python", "SQL", "Banking"],
-  live: "#home",
+  // live: "#home",
   code: "https://github.com/Meher16/Bank_management_system.git",
   },
 ];
