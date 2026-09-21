@@ -137,6 +137,14 @@ export const projects = [
     tags: ["Figma", "UI/UX", "Prototype"],
     live: "https://www.figma.com/proto/A6f01hSbWaHI41kuxE5Xh1/Project-file?page-id=0%3A1&node-id=2001-21&viewport=794%2C200%2C0.16&t=cL6AdfZ339iNYtNK-1&scaling=min-zoom&content-scaling=fixed&starting-point-node-id=2001%3A21",
   },
+  {
+  title: "Bank Management System",
+  description:
+    "A banking management application for managing customer accounts, transactions, deposits, withdrawals, and account records with core banking operations.",
+  tags: ["Python", "SQL", "Banking"],
+  live: "#home",
+  code: "https://github.com/Meher16/Bank_management_system.git",
+  },
 ];
 
 // EmailJS credentials — used by the Contact form to send messages
